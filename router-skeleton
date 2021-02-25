@@ -162,11 +162,11 @@ class Router:
     packet["msg"]["ASPath"].append(7)
     for key in self.sockets:
       print(self.sockets[key])
-      if key != srcif:
+      if key == srcif:
         print(key)
         print(srcif)
-        packet["src"] = key
-        packet["dst"] = key[:-1] + "1"
+        packet["src"] = key[:-1] + "1"
+        packet["dst"] = key
         self.sockets[key].send(json.dumps(packet).encode())
     return False
 
