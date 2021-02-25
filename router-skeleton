@@ -55,11 +55,11 @@ class Router:
     
   def add_forwarding(self, network, netmask, peer):
     """ Add entry to forwarding table """
-    routes.append({"network" : network, "netmask" : netmask, "peer": peer})
+    self.routes.append({"network" : network, "netmask" : netmask, "peer": peer})
 
   def lookup_routes(self, daddr):
     """ Lookup all valid routes for an address """
-    for route in routes:
+    for route in self.routes:
       network = route["network"]
       netmask = route["netmask"]
       network_list = [format(int(x), '08b') for x in network.split('.')]
