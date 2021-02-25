@@ -129,7 +129,7 @@ class Router:
 
   def update(self, srcif, packet):
     """ handle update packets """
-    updates[packet["src"]] = packet
+    self.updates[packet["src"]] = packet
     for key in self.sockets:
       if self.sockets[key] != srcif:
         packet["dst"] = key
