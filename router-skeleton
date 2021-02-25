@@ -80,7 +80,7 @@ class Router:
         if binary != '':
           masked_max[i] = int(binary, 2)
         else:
-          masked_max[i] = int(masked[i])
+          masked_max[i] = int(masked_min[i])
       print(route)
       print(masked_min)
       print(masked_max)
