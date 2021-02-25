@@ -165,7 +165,7 @@ class Router:
         packet["src"] = key[:-1] + "1"
         packet["dst"] = key
         #self.sockets[key].send(json.dumps(packet).encode())
-        self.sockets[key].send("{'type': 'update', 'src': '192.168.0.2', 'dst': '192.168.0.1', 'msg': {'network': '172.168.0.0', 'netmask': '255.255.0.0', 'localpref': 100, 'ASPath': [2, 7], 'origin': 'EGP', 'selfOrigin': True}}".encode())
+        self.sockets[key].send('{"type": "update", "src": "192.168.0.2", "dst": "192.168.0.1", "msg": {"network": "172.168.0.0", "netmask": "255.255.0.0", "localpref": 100, "ASPath": [2, 7], "origin": "EGP", "selfOrigin": True}}'.encode())
 
   def revoke(self, packet):
     """ handle revoke packets """
