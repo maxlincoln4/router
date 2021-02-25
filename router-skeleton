@@ -166,7 +166,8 @@ class Router:
         print(key)
         print(srcif)
         packet["src"] = key[:-1] + "1"
-        self.sockets[key].send(json.dumps(packet).encode())
+        packet["dst"] = key
+        # self.sockets[key].send(json.dumps(packet).encode())
     return False
 
   def revoke(self, packet):
