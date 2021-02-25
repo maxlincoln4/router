@@ -59,6 +59,7 @@ class Router:
 
   def lookup_routes(self, daddr):
     """ Lookup all valid routes for an address """
+    dest_list = [int(x) for x in daddr.split('.')]
     for route in self.routes:
       network = route["network"]
       netmask = route["netmask"]
@@ -81,10 +82,20 @@ class Router:
           masked_max[i] = int(binary, 2)
         else:
           masked_max[i] = int(masked_min[i])
-      print(route)
-      print(masked_min)
-      print(masked_max)
+      for i in range(4):
+        if masked_min[i] == masked_max[i]:
+          if dest_list[i] != masked_min[i]:
+            i = 0
+            break
+        else if dest_list[i] < masked_min[i] or dest_list[i] > masked_max[i]:
+          i = 0
+          break
+      if i == 3:
+        outroutes.append(route)
     outroutes = []
+    print(routes)
+    print(daddr)
+    print(outroutes)
     return outroutes
 
   def get_shortest_as_path(self, routes):
