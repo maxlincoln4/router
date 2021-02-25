@@ -162,8 +162,11 @@ class Router:
     """ handle update packets """
     self.updates[packet["src"]] = packet
     self.add_forwarding(packet["msg"]["network"], packet["msg"]["netmask"], packet["src"])
+    packet["msg"]["ASPath"] = packet["msg"]["ASPath"].append(7)
     for key in self.sockets:
       if key != srcif:
+        packet["src"] = key[:-1] + "1"
+        packet["dst"] = key
         self.sockets[key].send(json.dumps(packet).encode())
     return False
 
