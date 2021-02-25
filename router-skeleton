@@ -71,7 +71,7 @@ class Router:
             masked[i] += '1'
           else:
             masked[i] += '0'
-      print(self.routes[route])
+      print(route)
       print(masked)
     outroutes = []
     return outroutes
