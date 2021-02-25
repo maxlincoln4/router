@@ -59,7 +59,6 @@ class Router:
 
   def lookup_routes(self, daddr):
     """ Lookup all valid routes for an address """
-    print(self.routes)
     for route in self.routes:
       network = route["network"]
       netmask = route["netmask"]
@@ -72,6 +71,7 @@ class Router:
             masked[i] += '1'
           else:
             masked[i] += '0'
+      print(self.routes[route])
       print(masked)
     outroutes = []
     return outroutes
