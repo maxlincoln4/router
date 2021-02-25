@@ -132,6 +132,8 @@ class Router:
     self.updates[packet["src"]] = packet
     for key in self.sockets:
       if key != srcif:
+        print("test")
+        print(key)
         packet["src"] = key[:-1] + "1"
         packet["dst"] = key
         self.sockets[key].send(json.dumps(packet).encode())
