@@ -179,6 +179,7 @@ class Router:
     packet["src"] = src
     packet["dst"] = dst
     packet["msg"] = self.routes
+    self.sockets[dst].send(json.dumps(packet).encode())
     return True
 
   def handle_packet(self, srcif, packet):
