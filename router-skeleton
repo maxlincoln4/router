@@ -64,15 +64,26 @@ class Router:
       netmask = route["netmask"]
       network_list = [format(int(x), '08b') for x in network.split('.')]
       netmask_list = [format(int(x), '08b') for x in netmask.split('.')]
-      masked = ['', '', '', '']
+      masked_min = ['', '', '', '']
       for i in range(4):
         for j in range(8):
           if network_list[i][j] == '1' and netmask_list[i][j] == '1':
-            masked[i] += '1'
+            masked_min[i] += '1'
           else:
-            masked[i] += '0'
+            masked_min[i] += '0'
+        maxked_min[i] = int(masked_min[i], 2)
+      masked_max = ['', '', '', '']
+      for i in range(4):
+        netmask = netmask_list[i]
+        zeroes = netmask.count('0')
+        binary = '1' * zeroes
+        if binary != '':
+          masked_max[i] = int(binary, 2)
+        else:
+          masked_max[i] = int(masked[i])
       print(route)
-      print(masked)
+      print(masked_min)
+      print(masked_max)
     outroutes = []
     return outroutes
 
