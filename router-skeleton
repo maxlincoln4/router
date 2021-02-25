@@ -120,6 +120,7 @@ class Router:
 
   def forward(self, srcif, packet):
     """ Forward a data packet """
+    self.lookup_routes(packet["dst"])
     return False
 
   def coalesce(self):
@@ -132,8 +133,6 @@ class Router:
     self.updates[packet["src"]] = packet
     for key in self.sockets:
       if key != srcif:
-        print("test")
-        print(key)
         packet["src"] = key[:-1] + "1"
         packet["dst"] = key
         self.sockets[key].send(json.dumps(packet).encode())
@@ -154,6 +153,8 @@ class Router:
     """ dispatches a packet """
     if packet["type"] == "update":
       self.update(srcif, packet)
+    elif packet["type"] == "data":
+      self.forward(srcif, packet)
     return False
 
   def send_error(self, conn, msg):
