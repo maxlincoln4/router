@@ -59,7 +59,11 @@ class Router:
 
   def lookup_routes(self, daddr):
     """ Lookup all valid routes for an address """
-    # TODO
+    for route in routes:
+      network = route["network"]
+      netmask = route["netmask"]
+      network_list = [format(int(x), '08b') for x in network.split('.')]
+      netmask_list = [format(int(x), '08b') for x in netmask.split('.')]
     outroutes = []
     return outroutes
 
@@ -115,7 +119,6 @@ class Router:
 
   def forward(self, srcif, packet):
     """ Forward a data packet """
-    # TODO
     return False
 
   def coalesce(self):
@@ -125,7 +128,12 @@ class Router:
 
   def update(self, srcif, packet):
     """ handle update packets """
-    print(packet)
+    updates[packet["src"]] = packet
+    for key in self.sockets:
+      if self.sockets[key] != srcif:
+        packet["dst"] = key
+        self.sockets[key].send(json.dumps(packet))
+    self.add_forwarding(packet["msg"]["network"], packet["msg"]["netmask"], packet["src"])
     return False
 
   def revoke(self, packet):
