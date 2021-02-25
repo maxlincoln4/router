@@ -166,7 +166,7 @@ class Router:
     for key in self.sockets:
       if key != srcif:
         packet["src"] = key[:-1] + "1"
-        packet["dst"] = key
+        packet["dst"] = "test"
         self.sockets[key].send(json.dumps(packet).encode())
     return False
 
