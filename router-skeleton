@@ -64,6 +64,7 @@ class Router:
       netmask = route["netmask"]
       network_list = [format(int(x), '08b') for x in network.split('.')]
       netmask_list = [format(int(x), '08b') for x in netmask.split('.')]
+    print(network_list)
     outroutes = []
     return outroutes
 
