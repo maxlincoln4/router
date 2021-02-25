@@ -140,7 +140,7 @@ class Router:
 
   def handle_packet(self, srcif, packet):
     """ dispatches a packet """
-    if packet.type == "update":
+    if packet["type"] == "update":
       update(srcif, packet)
     return False
 
