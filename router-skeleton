@@ -71,7 +71,7 @@ class Router:
             masked_min[i] += '1'
           else:
             masked_min[i] += '0'
-        maxked_min[i] = int(masked_min[i], 2)
+        masked_min[i] = int(masked_min[i], 2)
       masked_max = ['', '', '', '']
       for i in range(4):
         netmask = netmask_list[i]
