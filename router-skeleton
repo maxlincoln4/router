@@ -93,9 +93,6 @@ class Router:
           break
       if i == 3:
         outroutes.append(route)
-    print(self.routes)
-    print(daddr)
-    print(outroutes)
     return outroutes
 
   def get_shortest_as_path(self, routes):
@@ -164,7 +161,7 @@ class Router:
     self.add_forwarding(packet["msg"]["network"], packet["msg"]["netmask"], packet["src"])
     packet["msg"]["ASPath"].append(7)
     for key in self.sockets:
-      print(socket)
+      print(self.socket[key])
       if key != srcif:
         print(key)
         print(srcif)
