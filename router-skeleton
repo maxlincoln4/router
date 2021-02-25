@@ -147,7 +147,9 @@ class Router:
 
   def forward(self, srcif, packet):
     """ Forward a data packet """
-    self.lookup_routes(packet["dst"])
+    routes = self.lookup_routes(packet["dst"])
+    peer = routes[0]["peer"]
+    self.sockets[peer].send(json.dumps(packet).encode())
     return False
 
   def coalesce(self):
