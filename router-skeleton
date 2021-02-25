@@ -159,14 +159,12 @@ class Router:
     """ handle update packets """
     self.updates[packet["src"]] = packet
     self.add_forwarding(packet["msg"]["network"], packet["msg"]["netmask"], packet["src"])
-    packet["msg"]["ASPath"].append(7)
+    packet["msg"]["ASPath"].append(self.asn)
     for key in self.sockets:
       if key != srcif:
         packet["src"] = key[:-1] + "1"
         packet["dst"] = key
-        #self.sockets[key].send(json.dumps(packet).encode())
-        #self.sockets[key].send('{"type": "update", "src": "192.168.0.2", "dst": "172.168.0.1", "msg": {"network": "172.168.0.0", "netmask": "255.255.0.0", "localpref": 100, "ASPath": [2, 7], "origin": "EGP", "selfOrigin": true}}'.encode())
-
+        self.sockets[key].send(json.dumps(packet).encode())
   def revoke(self, packet):
     """ handle revoke packets """
     # TODO
