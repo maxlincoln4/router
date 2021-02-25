@@ -87,7 +87,7 @@ class Router:
           if dest_list[i] != masked_min[i]:
             i = 0
             break
-        else if dest_list[i] < masked_min[i] or dest_list[i] > masked_max[i]:
+        elif dest_list[i] < masked_min[i] or dest_list[i] > masked_max[i]:
           i = 0
           break
       if i == 3:
