@@ -64,14 +64,14 @@ class Router:
       netmask = route["netmask"]
       network_list = [format(int(x), '08b') for x in network.split('.')]
       netmask_list = [format(int(x), '08b') for x in netmask.split('.')]
-    masked = ['', '', '', '']
-    for i in range(4):
-      for j in range(8):
-        if network_list[i][j] == '1' and netmask_list[i][j] == '1':
-          masked[i] += '1'
-        else:
-          masked[i] += '0'
-    print(masked)
+      masked = ['', '', '', '']
+      for i in range(4):
+        for j in range(8):
+          if network_list[i][j] == '1' and netmask_list[i][j] == '1':
+            masked[i] += '1'
+          else:
+            masked[i] += '0'
+      print(masked)
     outroutes = []
     return outroutes
 
