@@ -93,7 +93,7 @@ class Router:
           break
       if i == 3:
         outroutes.append(route)
-    print(routes)
+    print(self.routes)
     print(daddr)
     print(outroutes)
     return outroutes
