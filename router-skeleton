@@ -161,7 +161,7 @@ class Router:
     self.add_forwarding(packet["msg"]["network"], packet["msg"]["netmask"], packet["src"])
     packet["msg"]["ASPath"].append(7)
     for key in self.sockets:
-      print(self.socket[key])
+      print(self.sockets[key])
       if key != srcif:
         print(key)
         print(srcif)
